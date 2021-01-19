@@ -5,7 +5,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "weather-icons/css/weather-icons.css";
 
-const Api_Key = "35a0f6738c93c3c929ec30bbb3f53f1a";
+const ApiKey = "35a0f6738c93c3c929ec30bbb3f53f1a";
 
 class App extends React.Component {
   constructor() {
@@ -32,7 +32,7 @@ class App extends React.Component {
     };
   }
 
-  get_WeatherIcon(icons, rangeId) {
+  getWeatherIcon(icons, rangeId) {
     switch (true) {
       case rangeId >= 200 && rangeId < 232:
         this.setState({ icon: icons.Thunderstorm });
@@ -72,7 +72,7 @@ class App extends React.Component {
 
     if (city) {
       const api_call = await fetch(
-        `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${Api_Key}`
+        `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${ApiKey}`
       );
 
       const response = await api_call.json();
@@ -87,7 +87,7 @@ class App extends React.Component {
         error: false
       });
 
-      this.get_WeatherIcon(this.weatherIcon, response.weather[0].id);
+      this.getWeatherIcon(this.weatherIcon, response.weather[0].id);
 
     } else {
       this.setState({
